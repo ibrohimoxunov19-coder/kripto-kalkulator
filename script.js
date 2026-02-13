@@ -17,7 +17,7 @@ function process(isEncrypt) {
     switch(algo) {
         case 'caesar':
             let shift;
-            // Agar kalit raqam bo'lsa raqam oladi, harf bo'lsa alifbo tartibi (A=0, B=1...)
+            // Kalit raqam bo'lsa raqam, harf bo'lsa uning o'rnini (A=0, B=1...) oladi
             if (!isNaN(parseInt(key))) {
                 shift = parseInt(key);
             } else if (key && /[A-Z]/i.test(key)) {
@@ -116,5 +116,4 @@ function clearAll() {
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
 }
-
 
