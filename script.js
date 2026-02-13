@@ -12,12 +12,12 @@ function process(isEncrypt) {
     const algo = document.getElementById('algoSelect').value;
     let result = "";
 
-    if (!text) return; // Matn bo'lmasa hech narsa qilmaydi
+    if (!text) return; 
 
     switch(algo) {
         case 'caesar':
             let shift;
-            // Kalit raqam bo'lsa raqam, harf bo'lsa uning o'rnini (A=0, B=1...) oladi
+            
             if (!isNaN(parseInt(key))) {
                 shift = parseInt(key);
             } else if (key && /[A-Z]/i.test(key)) {
@@ -116,4 +116,3 @@ function clearAll() {
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
 }
-
