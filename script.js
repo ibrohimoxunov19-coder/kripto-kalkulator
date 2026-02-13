@@ -12,18 +12,15 @@ function process(isEncrypt) {
     const algo = document.getElementById('algoSelect').value;
     let result = "";
 
-    if (!text) return; 
+    if (!text) return;
 
     switch(algo) {
         case 'caesar':
-            let shift;
-            
+            let shift = 0;
             if (!isNaN(parseInt(key))) {
                 shift = parseInt(key);
             } else if (key && /[A-Z]/i.test(key)) {
                 shift = key.toUpperCase().charCodeAt(0) - 65;
-            } else {
-                shift = 0;
             }
             result = caesar(text, isEncrypt ? shift : -shift);
             break;
@@ -43,18 +40,17 @@ function process(isEncrypt) {
     document.getElementById('outputText').value = result;
 }
 
-// SEZAR: Harf va raqamni shifrlaydi
 function caesar(str, shift) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
-        let charCode = str.charCodeAt(i);
+        let code = str.charCodeAt(i);
         // HARFLAR (A-Z)
-        if (charCode >= 65 && charCode <= 90) {
-            res += String.fromCharCode(((charCode - 65 + shift % 26 + 26) % 26) + 65);
+        if (code >= 65 && code <= 90) {
+            res += String.fromCharCode(((code - 65 + shift % 26 + 26) % 26) + 65);
         }
         // RAQAMLAR (0-9)
-        else if (charCode >= 48 && charCode <= 57) {
-            res += String.fromCharCode(((charCode - 48 + shift % 10 + 10) % 10) + 48);
+        else if (code >= 48 && code <= 57) {
+            res += String.fromCharCode(((code - 48 + shift % 10 + 10) % 10) + 48);
         } else {
             res += str[i];
         }
@@ -62,13 +58,12 @@ function caesar(str, shift) {
     return res;
 }
 
-// VIJINER: Raqamlarni ham kalit asosida shifrlaydi
 function vigenere(text, key, isEncrypt) {
     key = key.toUpperCase().replace(/[^A-Z]/g, '') || "A";
     let res = "", j = 0;
     for (let i = 0; i < text.length; i++) {
-        let charCode = text.charCodeAt(i);
-        if ((charCode >= 65 && charCode <= 90) || (charCode >= 48 && charCode <= 57)) {
+        let code = text.charCodeAt(i);
+        if ((code >= 65 && code <= 90) || (code >= 48 && code <= 57)) {
             let k = key[j % key.length].charCodeAt(0) - 65;
             res += caesar(text[i], isEncrypt ? k : -k);
             j++;
@@ -79,15 +74,14 @@ function vigenere(text, key, isEncrypt) {
     return res;
 }
 
-// ATBASH: Raqamni ham teskari qiladi
 function atbash(str) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
-        let charCode = str.charCodeAt(i);
-        if (charCode >= 65 && charCode <= 90) {
-            res += String.fromCharCode(90 - (charCode - 65));
-        } else if (charCode >= 48 && charCode <= 57) {
-            res += String.fromCharCode(57 - (charCode - 48));
+        let code = str.charCodeAt(i);
+        if (code >= 65 && code <= 90) {
+            res += String.fromCharCode(90 - (code - 65));
+        } else if (code >= 48 && code <= 57) {
+            res += String.fromCharCode(57 - (code - 48));
         } else {
             res += str[i];
         }
