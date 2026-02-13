@@ -13,17 +13,22 @@
         <label for="inputText">Matnni kiriting:</label>
         <textarea id="inputText" rows="4" placeholder="Shifrlash uchun matn..."></textarea>
 
-        <label for="algoSelect">Algoritmni tanlang:</label>
-        <select id="algoSelect">
-            <option value="caesar">Sezar shifri</option>
-            <option value="vigenere">Vijiner shifri</option>
-            <option value="atbash">Atbash (Teskari)</option>
-            <option value="rot13">ROT13</option>
-            <option value="morse">Morze kodi</option>
-        </select>
-
-        <label for="keyInput">Kalit (Raqam yoki So'z):</label>
-        <input type="text" id="keyInput" placeholder="Masalan: 3 yoki ABC">
+        <div class="input-row">
+            <div class="input-group">
+                <label for="algoSelect">Algoritm:</label>
+                <select id="algoSelect">
+                    <option value="caesar">Sezar</option>
+                    <option value="vigenere">Vijiner</option>
+                    <option value="atbash">Atbash</option>
+                    <option value="rot13">ROT13</option>
+                    <option value="morse">Morze</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="keyInput">Kalit:</label>
+                <input type="text" id="keyInput" placeholder="3 yoki ABC">
+            </div>
+        </div>
 
         <div class="buttons">
             <button class="btn-encrypt" onclick="process(true)">Shifrlash</button>
@@ -39,3 +44,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
