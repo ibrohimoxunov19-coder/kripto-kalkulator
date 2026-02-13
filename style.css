@@ -20,31 +20,37 @@ body {
     border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-h1 { text-align: center; color: #f8fafc; text-shadow: 0 0 10px #38bdf8; }
+h1 { text-align: center; color: #f8fafc; text-shadow: 0 0 10px #38bdf8; margin-top: 0; }
+
+label { display: block; margin: 10px 0 5px; font-weight: bold; }
 
 textarea, input, select {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
     border: 1px solid #334155;
     background: #0f172a;
     color: #f1f5f9;
+    box-sizing: border-box;
 }
 
-.buttons { display: flex; gap: 10px; margin-top: 10px; }
+.buttons { display: flex; gap: 10px; }
 
 button {
     flex: 1;
     padding: 12px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
     transition: 0.3s;
+    text-transform: uppercase;
 }
 
 .btn-encrypt { background: #38bdf8; color: #0f172a; }
 .btn-decrypt { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; }
 .btn-copy { background: #22c55e; color: white; margin-top: 10px; width: 100%; }
 .btn-clear { background: #64748b; color: white; margin-top: 10px; width: 100%; }
+
+button:hover { opacity: 0.8; transform: translateY(-2px); }
