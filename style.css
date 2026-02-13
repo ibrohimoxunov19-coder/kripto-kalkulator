@@ -1,7 +1,14 @@
+/* Google Fonts'dan chiroyli shrift yuklaymiz */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&display=swap');
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle, #0f172a 0%, #020617 100%);
-    color: #38bdf8;
+    font-family: 'Roboto Mono', monospace;
+    background: #0d1117;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px; /* Orqa fondagi katakchalar (grid) */
+    color: #00ffcc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,47 +17,106 @@ body {
 }
 
 .container {
-    background: rgba(30, 41, 59, 0.7);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    background: rgba(22, 27, 34, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
+    border: 1px solid #00ffcc;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-h1 { text-align: center; color: #f8fafc; text-shadow: 0 0 10px #38bdf8; margin-top: 0; }
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
 
-label { display: block; margin: 10px 0 5px; font-weight: bold; }
+label {
+    display: block;
+    margin: 15px 0 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #8b949e;
+}
 
 textarea, input, select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px 15px;
+    border: 1px solid #30363d;
     border-radius: 8px;
-    border: 1px solid #334155;
-    background: #0f172a;
-    color: #f1f5f9;
+    background: #161b22;
+    color: #ffffff;
+    font-size: 15px;
     box-sizing: border-box;
+    transition: 0.3s ease;
 }
 
-.buttons { display: flex; gap: 10px; }
+textarea:focus, input:focus, select:focus {
+    border-color: #00ffcc;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+}
+
+/* Tugmalar joylashuvi */
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
 
 button {
     flex: 1;
-    padding: 12px;
-    cursor: pointer;
+    padding: 14px;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 13px;
+    transition: all 0.3s ease;
     text-transform: uppercase;
 }
 
-.btn-encrypt { background: #38bdf8; color: #0f172a; }
-.btn-decrypt { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; }
-.btn-copy { background: #22c55e; color: white; margin-top: 10px; width: 100%; }
-.btn-clear { background: #64748b; color: white; margin-top: 10px; width: 100%; }
+.btn-encrypt {
+    background: #00ffcc;
+    color: #0d1117;
+}
 
-button:hover { opacity: 0.8; transform: translateY(-2px); }
+.btn-decrypt {
+    background: transparent;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4);
+}
+
+.btn-copy {
+    background: #58a6ff;
+    color: #ffffff;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-clear {
+    background: #f85149;
+    color: #ffffff;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Natija oynasi - maxsus dizayn */
+#outputText {
+    background: #0d1117;
+    color: #00ffcc;
+    border-style: dashed;
+    font-family: 'Roboto Mono', monospace;
+}
