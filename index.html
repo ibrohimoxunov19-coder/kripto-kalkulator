@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kripto-Xabarchi | Gemini Edition</title>
+    <title>Kripto Kalkulyator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🔐 Kripto-Xabarchi</h1>
+        <h1>Kripto Kalkulyator</h1>
         
-        <div class="input-group">
-            <label>Kiruvchi matn:</label>
-            <textarea id="inputText" placeholder="Shifrlash yoki deshifrlash uchun matn kiriting..."></textarea>
+        <label for="inputText">Matnni kiriting:</label>
+        <textarea id="inputText" rows="4" placeholder="Shifrlash uchun matn..."></textarea>
+
+        <label for="algoSelect">Algoritmni tanlang:</label>
+        <select id="algoSelect">
+            <option value="caesar">Sezar shifri</option>
+            <option value="vigenere">Vijiner shifri</option>
+            <option value="atbash">Atbash (Teskari)</option>
+            <option value="rot13">ROT13</option>
+            <option value="morse">Morze kodi</option>
+        </select>
+
+        <label for="keyInput">Kalit (Raqam yoki So'z):</label>
+        <input type="text" id="keyInput" placeholder="Masalan: 3 yoki ABC">
+
+        <div class="buttons">
+            <button class="btn-encrypt" onclick="process(true)">Shifrlash</button>
+            <button class="btn-decrypt" onclick="process(false)">Deshifrlash</button>
         </div>
 
-        <div class="controls">
-            <div class="select-wrapper">
-                <label>Algoritm:</label>
-                <select id="algoSelect">
-                    <option value="caesar">Sezar (Siljitish)</option>
-                    <option value="vigenere">Vijiner (Kalit so'zli)</option>
-                    <option value="atbash">Atbash (Teskari)</option>
-                    <option value="rot13">ROT13 (Yarim aylana)</option>
-                    <option value="morse">Morze kodi</option>
-                </select>
-            </div>
-            <div class="key-wrapper">
-                <label>Kalit:</label>
-                <input type="text" id="keyInput" placeholder="Masalan: 3 yoki SECRET">
-            </div>
-        </div>
+        <label for="outputText">Natija:</label>
+        <textarea id="outputText" rows="4" readonly placeholder="Natija bu yerda chiqadi..."></textarea>
 
-        <div class="main-buttons">
-            <button onclick="process(true)" class="btn-encrypt">🔒 Shifrlash</button>
-            <button onclick="process(false)" class="btn-decrypt">🔓 Deshifrlash</button>
-        </div>
-
-        <div class="input-group">
-            <label>Natija:</label>
-            <textarea id="outputText" readonly placeholder="Natija bu yerda chiqadi..."></textarea>
-        </div>
-
-        <div class="action-buttons">
-            <button onclick="copyToClipboard()" class="btn-copy">📋 Nusxa olish</button>
-            <button onclick="clearAll()" class="btn-clear">🗑 Tozalash</button>
-        </div>
+        <button class="btn-copy" onclick="copyToClipboard()">Nusxa olish</button>
+        <button class="btn-clear" onclick="clearAll()">Tozalash</button>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
