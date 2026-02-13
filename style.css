@@ -1,8 +1,7 @@
-/* Umumiy sozlamalar */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle, #1a1a2e 0%, #16213e 100%);
-    color: #e94560;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #0f172a 0%, #020617 100%);
+    color: #38bdf8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,110 +9,42 @@ body {
     margin: 0;
 }
 
-/* Konteyner - Asosiy oyna */
 .container {
-    background: rgba(22, 33, 62, 0.9);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 15px rgba(233, 69, 96, 0.2);
-    width: 100%;
+    background: rgba(30, 41, 59, 0.7);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    width: 90%;
     max-width: 500px;
-    border: 1px solid rgba(233, 69, 96, 0.3);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-h1 {
-    text-align: center;
-    color: #0f3460;
-    background: #e94560;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    font-size: 24px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Elementlar tartibi */
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #00d2ff;
-}
+h1 { text-align: center; color: #f8fafc; text-shadow: 0 0 10px #38bdf8; }
 
 textarea, input, select {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid #0f3460;
-    border-radius: 10px;
-    background: #1a1a2e;
-    color: #fff;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: 0.3s;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #f1f5f9;
 }
 
-textarea:focus, input:focus {
-    border-color: #e94560;
-    outline: none;
-    box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
-}
-
-/* Tugmalar dizayni */
-.buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
+.buttons { display: flex; gap: 10px; margin-top: 10px; }
 
 button {
+    flex: 1;
     padding: 12px;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
     font-weight: bold;
-    font-size: 16px;
     transition: 0.3s;
-    text-transform: uppercase;
 }
 
-.btn-encrypt {
-    background: #e94560;
-    color: white;
-}
-
-.btn-decrypt {
-    background: #0f3460;
-    color: #00d2ff;
-    border: 1px solid #00d2ff;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    opacity: 0.9;
-}
-
-.btn-copy {
-    background: #22c55e;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.btn-clear {
-    background: #64748b;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* Natija maydoni uchun alohida rang */
-#outputText {
-    background: #0f3460;
-    color: #00d2ff;
-    border-color: #00d2ff;
-    font-family: 'Courier New', Courier, monospace;
-}
+.btn-encrypt { background: #38bdf8; color: #0f172a; }
+.btn-decrypt { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; }
+.btn-copy { background: #22c55e; color: white; margin-top: 10px; width: 100%; }
+.btn-clear { background: #64748b; color: white; margin-top: 10px; width: 100%; }
