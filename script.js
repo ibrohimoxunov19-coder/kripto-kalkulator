@@ -19,10 +19,17 @@ function process(isEncrypt) {
 
     switch(algo) {
         case 'caesar':
-            let shift = parseInt(key);
-            if (isNaN(shift)) {
-                alert("Sezar uchun kalitga FAQAT RAQAM kiriting!");
-                return;
+            let shift;
+            // Agar kalit raqam bo'lsa, raqam sifatida oladi
+            if (!isNaN(parseInt(key))) {
+                shift = parseInt(key);
+            } 
+            // Agar kalit harf bo'lsa, uning alifbodagi o'rnini oladi (A=0, B=1...)
+            else if (key && /[A-Z]/i.test(key)) {
+                shift = key.toUpperCase().charCodeAt(0) - 65;
+            } 
+            else {
+                shift = 0; // Kalit bo'sh bo'lsa siljitmaydi
             }
             result = caesar(text, isEncrypt ? shift : -shift);
             break;
@@ -126,4 +133,5 @@ function clearAll() {
     document.getElementById('inputText').value = "";
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
+
 }
