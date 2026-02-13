@@ -12,33 +12,15 @@ function process(isEncrypt) {
     const algo = document.getElementById('algoSelect').value;
     let result = "";
 
-    if (!text) {
-        alert("Matn kiriting!");
-        return;
-    }
+    if (!text) return; // Ogohlantirish o'rniga shunchaki to'xtaydi
 
     switch(algo) {
         case 'caesar':
-            let shift;
-            // Agar kalit raqam bo'lsa, raqam sifatida oladi
-            if (!isNaN(parseInt(key))) {
-                shift = parseInt(key);
-            } 
-            // Agar kalit harf bo'lsa, uning alifbodagi o'rnini oladi (A=0, B=1...)
-            else if (key && /[A-Z]/i.test(key)) {
-                shift = key.toUpperCase().charCodeAt(0) - 65;
-            } 
-            else {
-                shift = 0; // Kalit bo'sh bo'lsa siljitmaydi
-            }
+            let shift = parseInt(key) || 0; // Agar harf bo'lsa yoki bo'sh bo'lsa 0 oladi
             result = caesar(text, isEncrypt ? shift : -shift);
             break;
         case 'vigenere':
-            if (!key) {
-                alert("Vijiner uchun kalit so'z kiriting!");
-                return;
-            }
-            result = vigenere(text, key, isEncrypt);
+            result = vigenere(text, key || "A", isEncrypt); // Kalit bo'lmasa o'zgartirmaydi
             break;
         case 'atbash':
             result = atbash(text);
@@ -53,36 +35,27 @@ function process(isEncrypt) {
     document.getElementById('outputText').value = result;
 }
 
-// SEZAR: Harf va raqamni shifrlash miyasi
 function caesar(str, shift) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
         let charCode = str.charCodeAt(i);
-        // HARFLAR (A-Z)
         if (charCode >= 65 && charCode <= 90) {
             res += String.fromCharCode(((charCode - 65 + shift % 26 + 26) % 26) + 65);
-        }
-        // RAQAMLAR (0-9)
-        else if (charCode >= 48 && charCode <= 57) {
+        } else if (charCode >= 48 && charCode <= 57) {
             res += String.fromCharCode(((charCode - 48 + shift % 10 + 10) % 10) + 48);
-        }
-        else {
+        } else {
             res += str[i];
         }
     }
     return res;
 }
 
-// VIJINER: Endi raqamlarni ham kalit so'z asosida shifrlaydi
 function vigenere(text, key, isEncrypt) {
-    key = key.toUpperCase().replace(/[^A-Z]/g, '');
-    if (!key) return text;
+    key = key.toUpperCase().replace(/[^A-Z]/g, '') || "A";
     let res = "", j = 0;
     for (let i = 0; i < text.length; i++) {
         let c = text[i];
         let charCode = text.charCodeAt(i);
-        
-        // Harf yoki raqam bo'lsa kalitni ishlatamiz
         if ((charCode >= 65 && charCode <= 90) || (charCode >= 48 && charCode <= 57)) {
             let k = key[j % key.length].charCodeAt(0) - 65;
             res += caesar(c, isEncrypt ? k : -k);
@@ -94,7 +67,6 @@ function vigenere(text, key, isEncrypt) {
     return res;
 }
 
-// ATBASH: Raqamlarni ham teskari qiladi (0->9, 1->8...)
 function atbash(str) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
@@ -110,7 +82,6 @@ function atbash(str) {
     return res;
 }
 
-// MORZE (O'zgarishsiz)
 function toMorse(str) {
     return str.split('').map(c => morseCode[c] || c).join(' ');
 }
@@ -120,18 +91,19 @@ function fromMorse(str) {
     return str.trim().split(/\s+/).map(c => decodeMorse[c] || c).join('');
 }
 
-// QO'SHIMCHA
 function copyToClipboard() {
     const output = document.getElementById('outputText');
     if (!output.value) return;
     output.select();
     document.execCommand('copy');
-    alert("Nusxa olindi! ✅");
+    // Nusxa olinganda "alert" chiqmasligi uchun uni olib tashladim
 }
 
 function clearAll() {
     document.getElementById('inputText').value = "";
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
+}
 
 }
+
