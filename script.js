@@ -12,15 +12,23 @@ function process(isEncrypt) {
     const algo = document.getElementById('algoSelect').value;
     let result = "";
 
-    if (!text) return; // Ogohlantirish o'rniga shunchaki to'xtaydi
+    if (!text) return; // Matn bo'lmasa hech narsa qilmaydi
 
     switch(algo) {
         case 'caesar':
-            let shift = parseInt(key) || 0; // Agar harf bo'lsa yoki bo'sh bo'lsa 0 oladi
+            let shift;
+            // Agar kalit raqam bo'lsa raqam oladi, harf bo'lsa alifbo tartibi (A=0, B=1...)
+            if (!isNaN(parseInt(key))) {
+                shift = parseInt(key);
+            } else if (key && /[A-Z]/i.test(key)) {
+                shift = key.toUpperCase().charCodeAt(0) - 65;
+            } else {
+                shift = 0;
+            }
             result = caesar(text, isEncrypt ? shift : -shift);
             break;
         case 'vigenere':
-            result = vigenere(text, key || "A", isEncrypt); // Kalit bo'lmasa o'zgartirmaydi
+            result = vigenere(text, key || "A", isEncrypt);
             break;
         case 'atbash':
             result = atbash(text);
@@ -35,13 +43,17 @@ function process(isEncrypt) {
     document.getElementById('outputText').value = result;
 }
 
+// SEZAR: Harf va raqamni shifrlaydi
 function caesar(str, shift) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
         let charCode = str.charCodeAt(i);
+        // HARFLAR (A-Z)
         if (charCode >= 65 && charCode <= 90) {
             res += String.fromCharCode(((charCode - 65 + shift % 26 + 26) % 26) + 65);
-        } else if (charCode >= 48 && charCode <= 57) {
+        }
+        // RAQAMLAR (0-9)
+        else if (charCode >= 48 && charCode <= 57) {
             res += String.fromCharCode(((charCode - 48 + shift % 10 + 10) % 10) + 48);
         } else {
             res += str[i];
@@ -50,23 +62,24 @@ function caesar(str, shift) {
     return res;
 }
 
+// VIJINER: Raqamlarni ham kalit asosida shifrlaydi
 function vigenere(text, key, isEncrypt) {
     key = key.toUpperCase().replace(/[^A-Z]/g, '') || "A";
     let res = "", j = 0;
     for (let i = 0; i < text.length; i++) {
-        let c = text[i];
         let charCode = text.charCodeAt(i);
         if ((charCode >= 65 && charCode <= 90) || (charCode >= 48 && charCode <= 57)) {
             let k = key[j % key.length].charCodeAt(0) - 65;
-            res += caesar(c, isEncrypt ? k : -k);
+            res += caesar(text[i], isEncrypt ? k : -k);
             j++;
         } else {
-            res += c;
+            res += text[i];
         }
     }
     return res;
 }
 
+// ATBASH: Raqamni ham teskari qiladi
 function atbash(str) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
@@ -96,7 +109,6 @@ function copyToClipboard() {
     if (!output.value) return;
     output.select();
     document.execCommand('copy');
-    // Nusxa olinganda "alert" chiqmasligi uchun uni olib tashladim
 }
 
 function clearAll() {
@@ -105,5 +117,4 @@ function clearAll() {
     document.getElementById('keyInput').value = "";
 }
 
-}
 
