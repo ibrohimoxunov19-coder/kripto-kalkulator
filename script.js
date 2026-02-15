@@ -43,6 +43,18 @@ function process(isEncrypt) {
     document.getElementById('outputText').value = result;
 }
 
+function toASCII(str) {
+    return str.split('').map(char => char.charCodeAt(0)).join(' ');
+}
+
+function fromASCII(str) {
+    try {
+        return str.trim().split(/\s+/).map(code => String.fromCharCode(parseInt(code))).join('');
+    } catch (e) {
+        return "Xato: Noto'g'ri ASCII kodi!";
+    }
+}
+
 function caesar(str, shift) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
@@ -100,18 +112,6 @@ function fromMorse(str) {
     const decodeMorse = Object.fromEntries(Object.entries(morseCode).map(([k, v]) => [v, k]));
     return str.trim().split(/\s+/).map(c => decodeMorse[c] || c).join('');
 }
-function toASCII(str) {
-    return str.split('').map(char => char.charCodeAt(0)).join(' ');
-}
-
-function fromASCII(str) {
-    try {
-        return str.trim().split(/\s+/).map(code => String.fromCharCode(parseInt(code))).join('');
-    } catch (e) {
-        return "Xato: Noto'g'ri ASCII kodi kiritildi!";
-    }
-}
-
 function copyToClipboard() {
     const output = document.getElementById('outputText');
     if (!output.value) return;
@@ -124,4 +124,5 @@ function clearAll() {
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
 }
+
 
