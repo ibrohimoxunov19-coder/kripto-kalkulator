@@ -43,18 +43,6 @@ function process(isEncrypt) {
     document.getElementById('outputText').value = result;
 }
 
-function toASCII(str) {
-    return str.split('').map(char => char.charCodeAt(0)).join(' ');
-}
-
-function fromASCII(str) {
-    try {
-        return str.trim().split(/\s+/).map(code => String.fromCharCode(parseInt(code))).join('');
-    } catch (e) {
-        return "Xato: Noto'g'ri ASCII kodi!";
-    }
-}
-
 function caesar(str, shift) {
     let res = "";
     for (let i = 0; i < str.length; i++) {
@@ -124,5 +112,6 @@ function clearAll() {
     document.getElementById('outputText').value = "";
     document.getElementById('keyInput').value = "";
 }
+
 
 
